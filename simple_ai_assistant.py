@@ -1,6 +1,8 @@
 from openai import OpenAI
 from dotenv import load_dotenv
+from tools import TOOLS,FUNCTION_NAME_TO_FUNCTION_MAP
 import os
+import json
 
 load_dotenv()
 client =OpenAI(
@@ -29,10 +31,33 @@ while True:
 
     response=client.chat.completions.create(
         model=os.getenv("MODEL"),
-        messages=messages
+        messages=messages,
+        tools=TOOLS
     )
-    print("\nAI: "+response.choices[0].message.content)
+
+    msg=response.choices[0].message
+    if msg.tool_calls:
+        messages.append(msg)
+        for tool_call in msg.tool_calls:
+            fun_name=tool_call.function.name
+            fun_args=json.loads(tool_call.function.arguments or "{}")
+
+            fn=FUNCTION_NAME_TO_FUNCTION_MAP[fun_name]
+            result=fn(**fun_args)
+            messages.append({
+                "role":"tool",
+                "tool_id":tool_call.id,
+                "content":str(result)
+            })
+        response=client.chat.completions.create(
+            model=os.getenv("MODEL"),
+            messages=messages,
+        )
+
+        msg=response.choices[0].message
     messages.append({
-            "role":"assistant",
-            "content":response.choices[0].message.content
-        })
+        "role":"assistant",
+        "content":msg.content
+    })
+
+    print("AI: "+msg.content)
