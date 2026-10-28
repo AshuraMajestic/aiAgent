@@ -1,0 +1,79 @@
+NIMBUS DYNAMICS PVT. LTD. - ROOT CAUSE ANALYSIS (RCA) REPORTS
+Document ID: ENG-RCA-005 | Maintained by: Site Reliability Engineering (SRE) Team
+
+=====================================================
+RCA-2026-014: FLEETTRACK API OUTAGE
+=====================================================
+Date of incident: 18 March 2026
+Duration: 1 hour 47 minutes (02:13 AM - 04:00 AM IST)
+Severity: SEV-1
+Services affected: FleetTrack public API, mobile app live-location feature
+Customers impacted: about 38 enterprise customers
+Incident commander: Karthik Nair
+
+SUMMARY
+Customers received HTTP 503 errors when requesting live vehicle locations. The mobile app showed "Location unavailable".
+
+TIMELINE
+02:13 AM - Alert "API error rate > 20%" triggered on PagerDuty.
+02:18 AM - On-call engineer acknowledged the alert.
+02:35 AM - Database CPU found at 100% on the primary PostgreSQL node.
+02:50 AM - Slow query identified: a new report endpoint was running an unindexed join on the "vehicle_events" table (about 240 million rows).
+03:20 AM - Endpoint disabled using a feature flag; CPU started to drop.
+04:00 AM - Service fully recovered; incident closed.
+
+ROOT CAUSE
+A release deployed on 17 March introduced a report endpoint with a query that lacked an index on (vehicle_id, event_time). Under the nightly batch of report requests, the query caused full table scans and saturated the database.
+
+CONTRIBUTING FACTORS
+- Query was not load-tested against production-size data.
+- No query timeout was configured for the reporting endpoint.
+- Reporting traffic and live traffic shared the same database node.
+
+CORRECTIVE ACTIONS
+1. Add composite index on vehicle_events(vehicle_id, event_time) - DONE 19 March.
+2. Introduce a 5-second statement timeout for all API queries - DONE 25 March.
+3. Move reporting workloads to a read replica - DONE 10 April.
+4. Add mandatory performance testing with a 100M-row dataset in the CI pipeline - DONE 30 April.
+
+=====================================================
+RCA-2026-022: DELAYED NOTIFICATION EMAILS
+=====================================================
+Date of incident: 9 June 2026
+Duration: 6 hours (delayed delivery)
+Severity: SEV-3
+Services affected: Alert and notification emails
+Incident commander: Divya Krishnan
+
+SUMMARY
+Customers received geofence-breach alert emails up to 6 hours late.
+
+ROOT CAUSE
+The email provider's API key hit its monthly rate limit (500,000 emails) after a customer's misconfigured geofence generated over 180,000 alerts in one day. The queue backed up while retries were being throttled.
+
+CORRECTIVE ACTIONS
+1. Upgrade the email plan limit to 1,000,000 emails per month - DONE 10 June.
+2. Add per-customer alert rate limiting (max 500 alerts per hour per customer) - DONE 24 June.
+3. Create a dashboard and alert at 70% of monthly email quota - DONE 1 July.
+
+=====================================================
+RCA-2026-031: FAILED PRODUCTION DEPLOYMENT
+=====================================================
+Date of incident: 21 August 2026
+Duration: 52 minutes
+Severity: SEV-2
+Services affected: Authentication service (user login failures)
+Incident commander: Karthik Nair
+
+ROOT CAUSE
+A configuration change updated the JWT signing key in the staging secret store but was accidentally applied to production, invalidating all active sessions. Users were forced to log in again, and the auth service was overloaded by a login spike.
+
+CORRECTIVE ACTIONS
+1. Separate secret stores per environment with distinct access roles - DONE 5 September.
+2. Require two-person approval for any production secret change - DONE 12 September.
+3. Add gradual session invalidation and login rate smoothing - IN PROGRESS, due 30 November 2026.
+
+=====================================================
+RCA PROCESS
+=====================================================
+An RCA is mandatory for every SEV-1 and SEV-2 incident and must be published within 5 working days. It follows the blameless post-mortem format: summary, timeline, root cause, contributing factors, corrective actions with owners and due dates.

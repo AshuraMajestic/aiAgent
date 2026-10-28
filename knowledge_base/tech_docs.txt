@@ -1,0 +1,68 @@
+NIMBUS DYNAMICS PVT. LTD. - ENGINEERING & TECHNICAL DOCUMENTATION
+Document ID: ENG-TECH-006 | Version 5.1 | Owner: Platform Engineering | Last updated: 3 September 2026
+
+1. PRODUCT OVERVIEW
+Nimbus builds two main products:
+  - FleetTrack: real-time GPS tracking of vehicles with geofencing, trip history and driver scoring.
+  - RouteIQ: route optimization engine that plans delivery routes using traffic data and vehicle capacity.
+
+2. SYSTEM ARCHITECTURE
+FleetTrack uses a microservices architecture running on Kubernetes (AWS EKS, region ap-south-1 Mumbai). Main services:
+  - ingest-service: receives GPS pings from devices over MQTT (about 12,000 messages per second at peak).
+  - location-service: stores and serves the latest vehicle positions (Redis cache + PostgreSQL).
+  - geofence-service: evaluates geofence rules and triggers alerts.
+  - notification-service: sends emails, SMS and push notifications.
+  - auth-service: handles login using OAuth 2.0 and JWT tokens (access token validity: 15 minutes; refresh token: 7 days).
+  - report-service: generates PDF/CSV reports using a read replica.
+
+3. TECH STACK
+  Backend: Java 17 (Spring Boot 3), Python 3.11 (RouteIQ optimization)
+  Frontend: React 18 with TypeScript
+  Mobile: Flutter
+  Databases: PostgreSQL 15, Redis 7, ClickHouse (analytics)
+  Messaging: Apache Kafka (3 brokers), MQTT (EMQX)
+  Infrastructure as code: Terraform
+  CI/CD: GitHub Actions + ArgoCD
+  Monitoring: Prometheus, Grafana, Loki; alerting through PagerDuty
+
+4. ENVIRONMENTS
+  dev - auto-deployed on every merge to the "develop" branch.
+  staging - deployed daily at 8:00 PM IST from the "release" branch.
+  production - deployed Tuesday and Thursday between 11:00 AM and 3:00 PM IST. No deployments on Fridays or before public holidays.
+
+5. CODING STANDARDS
+- All code changes need a pull request with at least 2 approvals.
+- Minimum unit test coverage: 80% for new code.
+- Branch naming: feature/<ticket-id>-short-description, bugfix/<ticket-id>-short-description.
+- Commit messages follow Conventional Commits (feat:, fix:, docs:, chore:).
+- Secrets must never be committed; use AWS Secrets Manager.
+
+6. PUBLIC API
+Base URL: https://api.nimbusdynamics.example/v2
+Authentication: Bearer token in the Authorization header.
+Rate limit: 600 requests per minute per API key; exceeding it returns HTTP 429.
+Key endpoints:
+  GET /vehicles - list all vehicles
+  GET /vehicles/{id}/location - latest location
+  GET /vehicles/{id}/trips?from=&to= - trip history
+  POST /geofences - create a geofence
+  GET /reports/{id} - download a generated report
+Error format: {"error": {"code": "string", "message": "string", "request_id": "uuid"}}
+
+7. DISASTER RECOVERY
+  RPO (data loss tolerance): 5 minutes
+  RTO (recovery time): 60 minutes
+  Database backups: automated every 6 hours, retained for 30 days; cross-region copy in ap-southeast-1 (Singapore).
+  DR drills are conducted every quarter.
+
+8. ON-CALL
+Engineers rotate weekly on-call (Monday 10:00 AM to the next Monday 10:00 AM). Primary must acknowledge a PagerDuty alert within 5 minutes; otherwise it escalates to the secondary, then the Engineering Manager. On-call allowance: INR 4,000 per week.
+
+9. SEVERITY LEVELS
+  SEV-1: complete outage or data loss; respond immediately; updates every 30 minutes.
+  SEV-2: major feature degraded for many customers; respond within 15 minutes.
+  SEV-3: minor degradation; respond within 4 hours.
+  SEV-4: cosmetic issue; handled in the normal sprint.
+
+10. CONTACTS
+Platform Engineering: platform@nimbusdynamics.example | CTO: Anjali Rao | VP Engineering: Suresh Pillai

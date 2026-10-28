@@ -1,0 +1,55 @@
+NIMBUS DYNAMICS PVT. LTD. - TRAVEL & EXPENSE POLICY
+Document ID: FIN-TRV-007 | Version 2.8 | Effective: 1 April 2026 | Owner: Finance Department
+
+1. SCOPE
+This policy covers business travel and reimbursable expenses for all employees. Travel must be pre-approved by the reporting manager in the "TravelDesk" module of PeopleHub.
+
+2. TRAVEL APPROVAL
+- Domestic travel: manager approval, at least 5 working days in advance.
+- International travel: manager + Department Head + Finance approval, at least 15 working days in advance.
+- Travel booking must be done through the company travel partner, "WingsAway Travels".
+
+3. AIR TRAVEL
+- Domestic flights: economy class only. Business class is allowed for L5 and above (VP level).
+- International flights: economy class for flights under 8 hours; premium economy for flights over 8 hours for L4 and above.
+- Book at least 7 days in advance to get the lowest fare. Last-minute bookings above INR 15,000 for domestic flights need Department Head approval.
+
+4. TRAIN AND ROAD TRAVEL
+- Train: AC 2-tier (2A) for L1-L3; AC 1st class for L4 and above.
+- Local taxi / cab (Uber, Ola): reimbursable for client visits and airport transfers. Use of auto-rickshaw is reimbursable with a receipt.
+- Personal car: INR 12 per km; personal two-wheeler: INR 5 per km. A log sheet is required.
+
+5. HOTEL ACCOMMODATION (PER NIGHT, INCLUDING TAXES)
+  Tier-1 cities (Mumbai, Delhi, Bengaluru, Chennai, Hyderabad, Kolkata):
+    L1-L2: INR 4,500 | L3: INR 6,000 | L4 and above: INR 8,500
+  Other cities:
+    L1-L2: INR 3,000 | L3: INR 4,000 | L4 and above: INR 5,500
+  International: USD 150 per night for L1-L3; USD 220 for L4 and above.
+Hotels should be booked through WingsAway. Stays beyond 10 days require use of serviced apartments.
+
+6. DAILY ALLOWANCE (MEALS & INCIDENTALS)
+  Domestic: INR 1,000 per day (L1-L3); INR 1,500 per day (L4 and above)
+  International: USD 60 per day (L1-L3); USD 90 per day (L4 and above)
+No meal allowance is paid if meals are provided by the client or at a conference. Alcohol is never reimbursable.
+
+7. OTHER REIMBURSABLE EXPENSES
+- Internet / mobile data during travel: up to INR 500 per trip.
+- Visa fees and mandatory travel insurance for international trips.
+- Client entertainment: up to INR 2,500 per person, with prior approval and the client's name noted on the bill.
+- Conference fees if approved by the manager under the learning budget.
+
+8. NON-REIMBURSABLE EXPENSES
+Traffic fines, personal shopping, mini-bar charges, spa or entertainment, extra baggage for personal items, and lost or stolen personal belongings.
+
+9. CLAIM SUBMISSION
+- Submit expenses in the "ExpenseHub" module within 10 working days of returning from the trip.
+- Attach original receipts for every expense above INR 500.
+- Manager approves within 3 working days, Finance verifies within 5 working days.
+- Payment is credited with the next salary or within 10 working days, whichever is earlier.
+- Claims submitted after 30 days will be rejected unless the Finance Controller approves an exception.
+
+10. ADVANCES
+A travel advance of up to 70% of the estimated trip cost can be requested. It must be settled within 7 days of returning.
+
+11. CONTACT
+Finance Helpdesk: finance@nimbusdynamics.example | Travel desk: travel@nimbusdynamics.example | Extension: 2400

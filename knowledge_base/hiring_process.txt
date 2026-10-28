@@ -1,0 +1,43 @@
+NIMBUS DYNAMICS PVT. LTD. - HIRING PROCESS
+Document ID: HR-REC-001 | Version 3.2 | Last updated: 12 January 2026 | Owner: Talent Acquisition Team
+
+1. PURPOSE
+This document describes how Nimbus Dynamics hires employees, from raising a job requisition to the candidate's first day. It applies to all full-time roles in India (Bengaluru, Hyderabad, Pune).
+
+2. HIRING STAGES
+Stage 1 - Requisition: The hiring manager raises a requisition in the HRMS portal "PeopleHub". It must be approved by the Department Head and the Finance Controller. Approval takes up to 5 working days.
+
+Stage 2 - Sourcing: The Talent Acquisition (TA) team posts the role on LinkedIn, Naukri and the company careers page (careers.nimbusdynamics.example). Employee referrals are open for 14 days before external posting for senior roles.
+
+Stage 3 - Resume Screening: TA screens resumes within 3 working days. Shortlisted candidates receive a call from a recruiter.
+
+Stage 4 - Interview Rounds:
+  Round 1 - Online coding or aptitude assessment (60 minutes) on the HackerHub platform. Passing score: 65%.
+  Round 2 - Technical interview (45-60 minutes) with two engineers.
+  Round 3 - Managerial interview (30-45 minutes) with the hiring manager.
+  Round 4 - HR interview (30 minutes) covering culture fit, salary expectations and notice period.
+  Freshers (campus hires) skip Round 3.
+
+Stage 5 - Offer: The offer letter is issued within 4 working days of the final interview. The candidate has 7 days to accept. Offers are signed digitally through DocuSign.
+
+Stage 6 - Background Verification (BGV): Conducted by an external agency, TrustCheck. It covers education, last two employers and criminal record. BGV usually takes 7-10 working days.
+
+Stage 7 - Onboarding: Day 1 is always a Monday (or the next working day). The new hire receives a laptop, ID card and a buddy.
+
+3. SALARY BANDS (ANNUAL CTC, INDIA)
+  Associate Engineer (L1): INR 6,00,000 - 9,00,000
+  Software Engineer (L2): INR 9,00,000 - 16,00,000
+  Senior Engineer (L3): INR 16,00,000 - 28,00,000
+  Lead Engineer (L4): INR 28,00,000 - 42,00,000
+
+4. EMPLOYEE REFERRAL BONUS
+  L1-L2 referral: INR 20,000
+  L3 referral: INR 35,000
+  L4 and above: INR 50,000
+The bonus is paid after the referred employee completes 90 days. Referrals for HR or Finance roles by employees of the same team are not eligible.
+
+5. NOTICE PERIOD
+Standard notice period is 60 days for L1-L3 and 90 days for L4 and above. Buyout is possible with manager and HR approval.
+
+6. CONTACT
+Talent Acquisition: talent@nimbusdynamics.example | Head of TA: Meera Iyer
