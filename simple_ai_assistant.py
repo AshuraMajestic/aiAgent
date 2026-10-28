@@ -10,7 +10,7 @@ from types import SimpleNamespace
 from tools import TOOLS, run_tool
 from utilities.utilities import log,build_tool_calls_payload
 
-
+  
 
 load_dotenv() #by default looks for .env file
 
