@@ -1,3 +1,4 @@
+import json
 import os 
 from dotenv import load_dotenv
 
@@ -11,15 +12,20 @@ def log(text):
 
 
 def build_tool_calls_payload(tool_calls):
-    payload=[]
-    for tool_call in tool_calls:
-        tool_call_dict={
-            "id":tool_call.id,
-            "type":"function",
-            "functions":{
-                "name":tool_call.function.name,
-                "arguments":tool_call.function.arguments
-            }
-        }
-        payload.append(tool_call_dict)
+    payload = []
+    for tc in tool_calls:
+        args = tc.function.arguments
+        if isinstance(args, dict):          # dict -> JSON string
+            args = json.dumps(args)
+        args = (args or "").strip() or "{}"  # empty -> "{}"
+        json.loads(args)                     # raises early if invalid
+
+        payload.append({
+            "id": tc.id,
+            "type": "function",
+            "function": {
+                "name": tc.function.name,
+                "arguments": args,
+            },
+        })
     return payload
