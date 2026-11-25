@@ -1,0 +1,22 @@
+{
+  "title": "hi",
+  "updated": "2026-11-26_00-46-01",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hi"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How can I assist you today? \ud83d\ude0a"
+    },
+    {
+      "role": "user",
+      "content": "What is a chromaDb thing"
+    },
+    {
+      "role": "assistant",
+      "content": "ChromaDB is an open-source vector database optimized for efficient storage and retrieval of vector data, commonly used in AI and machine learning applications for tasks like similarity search and nearest neighbor queries. It helps manage large-scale datasets with high performance. (78 words)"
+    }
+  ]
+}
